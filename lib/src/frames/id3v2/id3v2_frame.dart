@@ -96,7 +96,8 @@ abstract class ID3V2Frame<T> implements Frame<T> {
       case EncodingBytes.utf8:
         return Utf8Codec(allowMalformed: true);
       default:
-        return UTF16();
+        return Utf8Codec(allowMalformed: true);
+      // return UTF16();
     }
   }
 }
