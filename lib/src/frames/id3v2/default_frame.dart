@@ -9,7 +9,7 @@ class DefaultFrame with ID3V2Frame<String> {
 
   @override
   String decodeBody(List<int> data, Encoding enc) {
-    return enc.decode(data);
+    return enc.decode(clearFrameData(data));
   }
 
   @override
