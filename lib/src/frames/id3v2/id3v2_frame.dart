@@ -17,22 +17,15 @@ abstract class ID3V2Frame<T> implements Frame<T> {
   ID3V2FrameHeader get header => _header;
 
   List<int> clearFrameData(List<int> bytes) {
-    // if (bytes.length > 3 && bytes[0] == 0xFF && bytes[1] == 0xFE) {
-    //   bytes = bytes.sublist(2);
-    // }
     var key = 0;
 
     for (var i = 0; i < bytes.length; i++) {
-      if (bytes[i] == 0xFE) {
+      if (bytes[i] == 0xFF && bytes[i + 1] == 0xFE) {
         key = i;
       }
     }
 
-    bytes = bytes.sublist(key + 1);
-
-    // if (bytes.length > 9) {
-    //   bytes = bytes.sublist(7);
-    // }
+    bytes = bytes.sublist(key);
 
     return bytes;
   }
