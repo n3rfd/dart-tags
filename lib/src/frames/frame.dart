@@ -62,8 +62,7 @@ class FramesID3V24 {
 
     if (data is List<int>) {
       final tag = latin1.decode(data.sublist(0, 4));
-      return _getFrame(
-          consts.framesV23_V24[tag] ?? consts.frameHeaderShortcutsID3V2_2[tag]);
+      return _getFrame(consts.framesV23_V24[tag] ?? tag);
     } else if (data is String) {
       return _getFrame(getTagByPseudonym(data));
     }
