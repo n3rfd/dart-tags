@@ -17,15 +17,18 @@ abstract class ID3V2Frame<T> implements Frame<T> {
   ID3V2FrameHeader get header => _header;
 
   List<int> clearFrameData(List<int> bytes) {
-    var key = 0;
-
-    for (var i = 0; i < bytes.length; i++) {
-      if (bytes[i] == 0xFE) {
-        key = i;
-      }
+    if (bytes.length > 3 && bytes[0] == 0xFF && bytes[1] == 0xFE) {
+      bytes = bytes.sublist(2);
     }
+    // var key = 0;
 
-    bytes = bytes.sublist(key + 1);
+    // for (var i = 0; i < bytes.length; i++) {
+    //   if (bytes[i] == 0xFE) {
+    //     key = i;
+    //   }
+    // }
+
+    // bytes = bytes.sublist(key + 1);
 
     return bytes.where((i) => i != 0).toList();
   }
@@ -103,8 +106,8 @@ abstract class ID3V2Frame<T> implements Frame<T> {
       case EncodingBytes.utf8:
         return Utf8Codec(allowMalformed: true);
       default:
-        return Utf8Codec(allowMalformed: true);
-      // return UTF16();
+        // return Utf8Codec(allowMalformed: true);
+        return UTF16();
     }
   }
 }
