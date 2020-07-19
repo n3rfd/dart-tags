@@ -30,10 +30,9 @@ abstract class ID3V2Frame<T> implements Frame<T> {
 
     // bytes = bytes.sublist(key + 1);
 
-    // if (bytes.length > 5 && bytes[3] == 0xFF && bytes[4] == 0xFE) {
-    //   bytes = bytes.sublist(5);
-    // }
-    bytes = bytes.sublist(3);
+    if (bytes.length > 9) {
+      bytes = bytes.sublist(7);
+    }
 
     return bytes.where((i) => i != 0).toList();
     // return bytes;
