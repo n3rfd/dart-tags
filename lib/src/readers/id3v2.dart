@@ -69,8 +69,12 @@ class ID3V2Reader extends Reader {
 
       tags[m?.key] = m?.value;
 
-      offset = offset + _headerLength + len;
-      end = offset < size;
+      if (m == null) {
+        end = false;
+      } else {
+        offset = offset + _headerLength + len;
+        end = offset < size;
+      }
     }
 
     return tags;

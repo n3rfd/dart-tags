@@ -18,16 +18,12 @@ abstract class ID3V2Frame<T> implements Frame<T> {
 
   List<int> clearFrameData(List<int> bytes) {
     var key = 0;
-
     for (var i = 0; i < bytes.length; i++) {
       if (bytes[i] == 0xFF && bytes[i + 1] == 0xFE) {
         key = i;
       }
     }
-
-    bytes = bytes.sublist(key);
-
-    return bytes;
+    return bytes.sublist(key);
   }
 
   @override
