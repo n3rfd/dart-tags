@@ -20,4 +20,5 @@ library dart_tags;
 
 export 'src/tag_processor.dart';
 export 'src/model/attached_picture.dart';
+export 'src/model/lyrics.dart';
 export 'src/model/tag.dart';
