@@ -15,7 +15,7 @@ class UnSyncLyric implements KeyEntity<String> {
 
   @override
   String toString() {
-    return '{language:$lang, description:$description, body: $lyrics';
+    return '{language:$lang, description:$description, body: $lyrics}';
   }
 
   @override
